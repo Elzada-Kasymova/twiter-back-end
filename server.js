@@ -3,6 +3,8 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { twitRouter } from './src/twit/twit.controller.js';
+import { authMiddleware } from './src/auth.middleware.js';
+import e from 'express';
 
 dotenv.config();
 
@@ -16,6 +18,8 @@ app.set('view engine', 'ejs');
 
 async function main() {
     app.use(express.json());
+
+
 
     app.use('/api/twits', twitRouter);
 
@@ -32,6 +36,11 @@ async function main() {
     app.all('*', (req, res) => {
         res.status(404).json({ message: 'Not Found' });
     });
+
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something broke!');
+    }) 
 
     const PORT = process.env.PORT || 4200;
     app.listen(PORT, () => {

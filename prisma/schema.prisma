@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Twit {
+  id        String   @id @default(cuid()) // Уникальный идентификатор с использованием cuid
+  text      String   // Текст твита
+  createdAt DateTime @default(now())      // Дата создания, по умолчанию текущее время
+  updatedAt DateTime @updatedAt           // Дата последнего обновления, обновляется автоматически
+} 

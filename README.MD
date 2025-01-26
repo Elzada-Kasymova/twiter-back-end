@@ -17,5 +17,5 @@ Twitter Back-End is a REST API for managing tweets. It provides routes for fetch
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/twitter-back-end.git
+   git clone https://github.com/Elzada-Kasymova/twiter-back-end.git
 
